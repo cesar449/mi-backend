@@ -1,0 +1,15 @@
+# Ignorar entorno de configuración
+.env
+
+# Dependencias
+node_modules/
+
+# Archivos de construcción
+dist/
+build/
+
+# Archivos de logs
+*.log
+
+# Configuración de TypeScript
+tsconfig.json
