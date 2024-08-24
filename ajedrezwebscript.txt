@@ -1,0 +1,244 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-08-2024 a las 19:37:23
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `ajedrezweb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `correos`
+--
+
+CREATE TABLE `correos` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `fecha_registro` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `correos`
+--
+
+INSERT INTO `correos` (`id`, `email`, `fecha_registro`) VALUES
+(11, 'ajedrezutng@gmail.com', '2024-08-14 23:46:04'),
+(13, 'orlancesar880@gmail.com', '2024-08-20 14:43:48'),
+(14, 'sg955230@gmail.com', '2024-08-21 12:50:53'),
+(15, 'iza.navarro87@gmail.com', '2024-08-22 08:04:37'),
+(16, 'apolinartrejo@utng.edu.mx', '2024-08-22 10:19:36'),
+(17, 'jrps4949@gmail.com', '2024-08-22 10:20:11');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `img` text NOT NULL,
+  `fecha_evento` datetime NOT NULL DEFAULT current_timestamp(),
+  `organizador` int(11) DEFAULT NULL,
+  `estatus` enum('activo','inactivo') DEFAULT 'activo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `eventos`
+--
+
+INSERT INTO `eventos` (`id`, `nombre`, `descripcion`, `img`, `fecha_evento`, `organizador`, `estatus`) VALUES
+(4, 'TORNEO UTNG 2', 'Torneo en la universidad tecnológica del norte de guanaguato.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.columnadeportiva.com%2Fwp-content%2Fuploads%2F2022%2F01%2Fpersona-jugando-ajedrez.jpg&f=1&nofb=1&ipt=b2240758e23a5cb90317288f2ab92b548b2aee16530ae327dfea3b35179ff54c&ipo=images', '2024-08-22 16:23:44', NULL, 'inactivo'),
+(5, 'TORNEO UTNG 2', 'Torneo en la universidad tecnológica del norte de Guanajuato.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.columnadeportiva.com%2Fwp-content%2Fuploads%2F2022%2F01%2Fpersona-jugando-ajedrez.jpg&f=1&nofb=1&ipt=b2240758e23a5cb90317288f2ab92b548b2aee16530ae327dfea3b35179ff54c&ipo=images', '2024-08-22 16:23:58', NULL, 'inactivo'),
+(6, 'TORNEO UTNG 2024', 'torneo selectivo UTNG', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.columnadeportiva.com%2Fwp-content%2Fuploads%2F2022%2F01%2Fpersona-jugando-ajedrez.jpg&f=1&nofb=1&ipt=b2240758e23a5cb90317288f2ab92b548b2aee16530ae327dfea3b35179ff54c&ipo=images', '2024-08-22 00:00:00', 3, 'activo'),
+(7, 'TORNEO UTNG 4', 'Torneo en la universidad tecnológica del norte de Guanajuato.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.columnadeportiva.com%2Fwp-content%2Fuploads%2F2022%2F01%2Fpersona-jugando-ajedrez.jpg&f=1&nofb=1&ipt=b2240758e23a5cb90317288f2ab92b548b2aee16530ae327dfea3b35179ff54c&ipo=images', '2024-08-15 06:11:13', NULL, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `juegos`
+--
+
+CREATE TABLE `juegos` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `url_juego` varchar(255) NOT NULL,
+  `fecha_publicacion` datetime DEFAULT current_timestamp(),
+  `estatus` enum('activo','inactivo') DEFAULT 'activo',
+  `url_img` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `juegos`
+--
+
+INSERT INTO `juegos` (`id`, `titulo`, `descripcion`, `url_juego`, `fecha_publicacion`, `estatus`, `url_img`) VALUES
+(1, 'CHEZ AJEDREEZ', 'Juego de ajedrez en linea', 'https://www.chess.com/es', '2024-08-15 06:06:32', 'activo', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.chesscomfiles.com%2Fuploads%2Fv1%2Fnews%2F1180855.14d99b56.5000x5000o.11f1260db719.png&f=1&nofb=1&ipt=905207e51b6c356a3b4d51688286385cd64dd428c6f807c1f1801555d47bfe24&ipo=images'),
+(5, 'poki', 'juego de ajedres', 'https://poki.com/es/ajedrez?msockid=377bb65bc26a6d2000faa2cdc3096c63', '2024-08-21 00:00:00', 'activo', 'https://th.bing.com/th/id/R.d8634f70df9c9de92aa624441a5cf43b?rik=JFjCfdJ7pK6MaQ&pid=ImgRaw&r=0'),
+(6, 'Multijuegos', 'multijuegos', 'https://www.minijuegos.com/juego/ajedrez', '2024-08-22 03:50:26', 'activo', 'https://th.bing.com/th/id/R.48564102f1a72920cc9a2de8b79189c2?rik=eBhD9HVz9fglvQ&pid=ImgRaw&r=0'),
+(7, 'crazygames', 'muchos juegos de ajedres escogue a tu preferencia', 'https://www.crazygames.ro/t/sah', '2024-08-21 00:00:00', 'activo', 'https://images.crazygames.com/masterchessmultiplayer.png?auto=format,compress&q=75&cs=strip&ch=DPR&w=1200&h=630&fit=crop');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `noticias`
+--
+
+CREATE TABLE `noticias` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `contenido` text NOT NULL,
+  `imagen_url` varchar(255) DEFAULT NULL,
+  `fecha_publicacion` datetime DEFAULT current_timestamp(),
+  `autor_id` int(11) DEFAULT NULL,
+  `estatus` enum('activo','inactivo') DEFAULT 'activo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`id`, `titulo`, `contenido`, `imagen_url`, `fecha_publicacion`, `autor_id`, `estatus`) VALUES
+(1, 'Nuevas Piezas Coleccionables', 'Se hara una venta de piezas unicas.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs1.1zoom.me%2Fb2361%2F287%2FChess_512263_1920x1080.jpg&f=1&nofb=1&ipt=e6153b70e8a4657b49ef1700fd864fadcec517885c55feb665c33c98bbde29c6&ipo=images', '2024-08-22 16:25:55', 3, 'activo'),
+(2, 'La Evolución del Ajedrez en el Siglo XXI', 'El ajedrez ha experimentado una evolución significativa en el siglo XXI, impulsada por la tecnología, la inteligencia artificial y el acceso global al juego. Con plataformas como Chess.com y Lichess, millones de jugadores pueden competir entre sí en tiempo real, independientemente de su ubicación geográfica. Además, los motores de ajedrez como Stockfish y AlphaZero han revolucionado la forma en que los jugadores analizan las partidas, ofreciendo una comprensión más profunda de las posiciones y estrategias. Este artículo explora cómo el ajedrez se ha transformado en la era digital, destacando los avances tecnológicos y su impacto en la comunidad global de ajedrecistas.', 'https://historia.nationalgeographic.com.es/medio/2020/12/14/ajedrez-chino_4621e867_1280x853.jpg', '2024-08-15 00:00:00', 4, 'activo'),
+(3, 'El Impacto de los Torneos Online en el Ajedrez Moderno', 'Los torneos de ajedrez en línea se han convertido en una parte integral del ecosistema del ajedrez moderno. A diferencia de los torneos presenciales, los eventos online permiten a los jugadores competir desde la comodidad de sus hogares, eliminando las barreras geográficas y reduciendo los costos de viaje. Este cambio ha democratizado el acceso al ajedrez competitivo, permitiendo a más jugadores participar en torneos internacionales. Sin embargo, también ha planteado desafíos, como la integridad del juego y la necesidad de sistemas robustos de detección de trampas. Este artículo analiza los beneficios y los desafíos de los torneos de ajedrez en línea y su impacto en el futuro del juego.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8VXK7zNwZYueKJ5gNMhNDQpsT6gUYrjXZbw&s', '2024-08-15 00:00:00', 4, 'activo'),
+(5, 'nuevo evento de polito', 'el dia jueves habra paraescolares en la universidad tecnologica del norte de guanajuato', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.popsugar-assets.com%2Ffiles%2Fthumbor%2FNIKbr0Gm1f5uOkcWtG8Eo11SLv0%2Ffit-in%2F1024x1024%2Ffilters%3Aformat_auto-!!-%3Astrip_icc-!!-%2F2017%2F02%2F23%2F841%2Fn%2F1922283%2F5291412c8b10754c', '2024-08-21 00:00:00', 3, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `fecha_registro` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `fecha_registro`) VALUES
+(3, 'Cesar Orlando', 'orlancesar880@gmail.com', 'V20287a00#', '2024-08-20 15:12:12'),
+(4, 'chino', 'sg955230@gmail.com', '12345', '2024-08-20 15:12:49'),
+(5, 'alan', 'orlancesar123@gmail.com', '123', '2024-08-22 09:53:41'),
+(6, 'polito', 'apolinartrejo@utng.edu.mx', '123456', '2024-08-22 10:27:37');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `correos`
+--
+ALTER TABLE `correos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indices de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `eventos_ibfk_1` (`organizador`);
+
+--
+-- Indices de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `autor_id` (`autor_id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `correos`
+--
+ALTER TABLE `correos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `juegos`
+--
+ALTER TABLE `juegos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`organizador`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
+
+--
+-- Filtros para la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`autor_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
